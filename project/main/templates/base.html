@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        SampleProject
+        {% if page_title %}
+            | {{page_title}}
+        {% endif %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'main/bootstrap/css/bootstrap.css' %}" />
+{#    <link rel="stylesheet" href="{% static 'main/multiverse/css/main.css' %}" />#}
+    <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script src="{% static 'main/bootstrap/js/bootstrap.js' %}"></script>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+    <style>
+
+        .header_footer {
+            margin: auto;
+            text-align: center;
+        }
+        body {
+            background-color: #010722;
+        }
+
+        {% block local_styles %}
+        {% endblock %}
+
+    </style>
+
+    {% block local_includes %}
+    {% endblock %}
+
+</head>
+<body>
+    <div id="header" class="header_footer">
+        {% if header %}
+            <a href="/">
+                <img width=800 src="{{ header.content_image.url }}" alt="Header"/>
+            </a>
+        {% endif %}
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% for item in menu %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/{{ item.category }}">{{ item.text_show }} <span class="sr-only">(current)</span></a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if user_is_logged %}
+                <a href="/admin/"> {{ user.username }} </a>
+            {% endif  %}
+        </div>
+      </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="footer" class="header_footer">
+        {% if footer %}
+            <img src="{{ footer.content_image.url }}" alt="Footer" />
+        {% endif %}
+    </div>
+
+    {% block local_javascript %}
+    {% endblock %}
+
+</body>
+</html>

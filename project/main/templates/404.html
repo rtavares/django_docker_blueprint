@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        SampleProject
+        {% if page_title %}
+            | {{page_title}}
+        {% endif %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'main/bootstrap/css/bootstrap.css' %}" />
+    <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script src="{% static 'main/bootstrap/js/bootstrap.js' %}"></script>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+    <style>
+
+        .header_footer {
+            margin: auto;
+            text-align: center;
+        }
+        body {
+            background-color: #010722;
+        }
+
+        {% block local_styles %}
+        {% endblock %}
+
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+      </nav>
+
+    {% block content %}
+        <div class="d-block p-2 bg-primary text-white text-center">
+            <h1>SampleProject</h1>
+        </div>
+        <div class="d-block p-2 bg-warning text-white text-center">
+        </div>
+        <div class="d-block p-2 bg-warning text-white text-center">
+            <h1>Error 404 - Page Not Found</h1>
+        </div>
+    {% endblock %}
+
+</body>
+</html>

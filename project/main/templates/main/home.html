@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block local_styles %}
+
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-indicators li {
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+        }
+
+        .container_size {
+            width: 55%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+
+        .main_content {
+            margin: 7%;
+        }
+{% endblock %}
+
+{% block content %}
+    {% if content %}
+        <div id="main_content" class="main_content">
+            <!-- Page Features -->
+            <div class="row text-center">
+                {% for item in content %}
+                  <div class="col-lg-3 col-md-6 mb-4">
+                      <div class="card h-100">
+                        {{item.name}}
+                          <div class="card-body">
+                              {{item.notes}}
+                          </div>
+                          <div class="card-footer">
+                              {{ item.pk }}
+                          </div>
+                      </div>
+                  </div>
+                {% endfor %}
+            </div>
+            <!-- /.row -->
+
+        </div>
+    {% else %}
+        <div class="jumbotron">
+            <h1>No content to display </h1>
+            <p>Go to <a href="/admin">admin</a> and create some.</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

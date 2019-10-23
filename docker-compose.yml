@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  project_db:
+    image: postgres:11.5-alpine
+    container_name: ${DB_CONTAINER_NAME}
+    volumes:
+      - postgres_data:/var/lib/potgresql/data/
+    ports:
+#      Local development only
+      - ${DATABASE_EXPOSE_PORT}:5432
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+
+  # Have to be equal to ${PROJECT_NAME}
+  project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_CONTAINER_NAME}
+    command: /${PROJECT_WORK_DIR}/scripts/start_project.sh
+    volumes:
+      - .:/${PROJECT_WORK_DIR}
+    ports:
+      - ${WSGI_PORT}:${WSGI_PORT}
+    depends_on:
+      - project_db
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+
+networks:
+#  TODO: Check the usage of variables in 'networks'
+#  ${DOCKER_NETWORK_NAME}:
+  project_NET:
+volumes:
+  postgres_data:

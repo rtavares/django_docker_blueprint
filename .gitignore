@@ -1,0 +1,9 @@
+# Remeber to set a global .gitignore to your system to excluse specific OS / IDE files / folders.
+
+.env*
+*.pyc
+*.sqlite3
+secret_key.py
+media/
+static/
+__pycache__/
