@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class SampleData(models.Model):
     """ Sample data for BluePrint """
     name = models.CharField(max_length=200)

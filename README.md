@@ -8,6 +8,7 @@ Using:
 - Utility scripts
 
 ### How to use
+- Create a `.env.` file from `dot_env_sample` and tailor it to your needs.
 - Update project name 'project' to the name of your project where required.  
 - Run as needed:
     - `docker-compose up --build -d` 

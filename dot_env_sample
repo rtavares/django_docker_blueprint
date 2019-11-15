@@ -1,0 +1,43 @@
+# "dot_env_sample" is a sample source to create a local ".env" file.
+# Please copy it to a local ".env" file and tailor it to your needs
+# before running "docker-compose" commands.
+# Please be sure to observer the "SECURITY" below.
+
+# ---------------------------------------------------------------------------
+
+# This file is used both by 'docker-compose', shell scripts and 'python-dotenv' package.
+# It should be the 'single source of truth' for environment definitions
+
+# SECURITY: Be sure to make your .env files specific to environments - DEV / QA / UA / STG / PREPROD / PROD -
+# and always maintain it local never committing it.
+
+DEVELOPMENT=True
+PRODUCTION=False
+
+#DEVELOPMENT=False
+#PRODUCTION=True
+
+# Django project name
+PROJECT_NAME=project
+
+# docker-compose and Django settings
+DATABASE_NAME=postgres
+DATABASE_USER=postgres
+DATABASE_PASS=postgres
+DATABASE_HOST=project_DB
+
+DATABASE_HOST=project_DB
+# - local tests
+# DATABASE_HOST=localhost
+DATABASE_EXPOSE_PORT=5432
+
+DATABASE_PORT=5432
+WSGI_PORT=8002
+
+# docker-compose settings
+DB_CONTAINER_NAME=project_DB
+PROJECT_CONTAINER_NAME=bp_project_SRV
+DOCKER_NETWORK_NAME=project_NET
+
+# Have to match definition on Dockerfile
+PROJECT_WORK_DIR=wrkdir
